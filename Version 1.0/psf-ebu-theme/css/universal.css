@@ -1,0 +1,231 @@
+body{
+    margin:0;
+  }
+  
+  h1{
+    font: 2em "bebas-neue-pro", sans-serif;
+    line-height: 29px;
+    font-weight: 400;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  h2{
+    font-family: "bebas-neue-pro", sans-serif ;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #79838d;
+    text-transform: uppercase;
+  }
+  
+  h3{
+    font-family: "Roboto";
+    font-size: 0.85em;
+    font-weight: 400;
+    color: #f15d22;
+  }
+  p, a, li{
+    color: #666;
+    font: 0.85em 'Roboto', sans-serif;
+    line-height: 22px;
+  }
+  
+  .mainContainer a{
+    color: #50b6e0;
+    width: fit-content;
+  }
+  
+  /*----------Universal Padding----------*/
+  #headerMain a, .selection, .mainContainer .homeWebinar, .mainContainer .homeArticles, #footerMain, .webinarsContainer .webinars, .baContainer .baArticles, .ebContainer .ebArticles{
+  }
+  
+  #headerMain{
+    background: url(../images/bg.gif);
+    background-size: contain;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .headerImage{
+    width: 100%;
+  }
+  .headerNav{
+    display: none;
+  }
+  #headerMain a{
+    display:flex;
+    width:100%;
+  }
+  #headerMain img{
+    width: 100%;
+  }
+  
+  
+  .headerNav{
+    width: 1200px;
+  }
+  .headerNav ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: center;
+  }
+  .headerNav li{
+    color: white;
+    font-size: 24px;
+  }
+  .headerNav a{
+    text-decoration: none;
+    color:inherit;
+    font-size: inherit;
+  }
+  
+  
+  .selection{
+    padding: 1% 0;
+    background: #f0f1f3;
+    border-top: 1px solid #50b6e0;
+    border-bottom: 1px solid #50b6e0;
+  }
+  
+  .selection ul{
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    margin: 0 auto;
+    justify-content: center;
+    width: 60%;
+  }
+
+  .selection .menu-item-has-children{
+    position: relative;
+  }
+  .selection .menu-item-has-children:hover > .sub-menu{
+    height: 200px;
+    transition: 0.3s ease;
+  }
+  .selection .sub-menu{
+    height: 0;
+    overflow: hidden;
+    width: fit-content;
+    position: absolute;
+    left: 0;
+    top: 2em;
+    display: block;
+    background: inherit;
+  }
+
+  .selection li{
+    position: relative;
+    padding: 2px 0 2px 0;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 0 3%;
+  }
+  .selection li:hover{
+    color: #f37121;
+  }
+  .current:after{
+    content : '';
+    width: 100%;
+    height: 2px;
+    background:#f37121;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+  }
+  
+  .intro{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1% 0;
+  }
+  
+  .intro h1{
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+  }
+  
+  .intro p{
+    width: 60%;
+    font-size: 1.25em;
+    text-align: center;
+  }
+  
+  #footerMain{
+    display:flex;
+    margin-top: 1%;
+  }
+  
+  
+  .footerContainer{
+    background: #50545d;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 4% 7%;
+    width: 100%;
+  }
+  .footerContainer h2, .footerContainer a{
+    color: white;
+  }
+  
+  .footerDiv{
+    width: auto;
+    display:flex;
+    flex-direction: column;
+  }
+  
+  .footerContainer .logo{
+    width: 15%;
+  }
+  .logo img{
+    width: 100%;
+  }
+  .footerContainer .footerText{
+    width: 77%;
+  }
+  .footerText p{
+    color: white;
+    width: 78%;
+    margin: 0 0 2%;
+  }
+  .footerText a{
+    color: #50b6e0;
+    text-decoration: none;
+  }
+  
+  @media only screen and (min-width: 1366px) and (max-width: 1536px) {
+    .footerContainer .logo{
+      width: 17%;
+    }
+    .footerText{
+      justify-content: space-between;
+    }
+    .footerText p{
+      margin: 0;
+    }
+  }
+  @media screen and (min-width: 1025px) and (max-width:1366px){
+    .selection li{
+      font-size: 1em;
+    }
+    .footerText{
+      justify-content: space-between;
+    }
+    .footerContainer .logo{
+      width: 20%;
+    }
+    .footerContainer .footerText{
+      width: 77%;
+    }
+    .footerText p{
+      width: 100%;
+    }
+  }
+  
