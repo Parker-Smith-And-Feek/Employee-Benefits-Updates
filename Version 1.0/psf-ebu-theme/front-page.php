@@ -4,15 +4,12 @@
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 			<div class="the_content">
+				<?php echo 'directory: ' .  $_SERVER['DOCUMENT_ROOT'];?>;
 				<h1><?php echo apply_filters('twobc_title_single', get_the_title()); ?></h1>
 				<?php the_content(); ?>
 			</div>
 
 		<?php endwhile; endif;?>
-	</div>
-
-	<div class="sidebar-right">
-		<?php dynamic_sidebar('sidebar-home'); ?>
 	</div>
 
 <?php get_footer(); ?>

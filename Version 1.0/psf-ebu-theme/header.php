@@ -2,7 +2,8 @@
 <html class ='' lang=''>
     <!--Start head content-->
     <head>
-        <!--Get values from respective DB-tables. Will use this data to populate fields via JS/jQuery, to have more flexibility with future vs past posts-->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title><?php wp_title('|', true, 'right'); echo get_bloginfo('name');?></title>
         <?php
         //Get values from respective DB-tables. Will use this data to populate fields via JS/jQuery, to have more flexibility with future vs past posts
             global $wpdb;
@@ -25,38 +26,40 @@
                 );
             $employee_benefits = $wpdb->get_results($eb_sql);
 
-  ?>
-  <script>
-    let benefitsWebinars = <?php echo json_encode($webinars_data)?>;
-    console.log('benefitsWebinars: ', benefitsWebinars);
-    let benefitAlerts = <?php echo json_encode($benefit_alerts)?>;
-    let employeeBenefits = <?php echo json_encode($employee_benefits)?>;
+        ?>
+        <script>
+            let benefitsWebinars = <?php echo json_encode($webinars_data)?>;
+            console.log('benefitsWebinars: ', benefitsWebinars);
+            let benefitAlerts = <?php echo json_encode($benefit_alerts)?>;
+            let employeeBenefits = <?php echo json_encode($employee_benefits)?>;
 
-  </script>
-  <?php wp_head() ?>
+        </script>
+        <?php wp_head() ?>
     </head>
     <!--Start of Body content-->
     <body>
+        <header id = "headerMain">
         <!--Header image and logo-->
-        <hgroup class="container headerImage">
-            <!-- #header start -->
-            <a style="text-decoration:none;" href="http://www.psfinc.com">
-                <img style="top:0; text-align:center;" alt="Home" src="/wp-content/uploads/2023/01/healthcarereform-webheader.jpg" />
-            </a>
-        </hgroup>
-        <!--Navigation / navbar-->
-        <nav class = 'selection transition' id = 'selection'>
-            <?php
-            wp_nav_menu(
-                array(
-                    'menu'           => 'Primary',
-                    'theme_location' => 'primary',
-                    'container'      => '',
-                    'add_li_class'   => 'select',
-                )
-            );
-            ?>
-        </nav>
+            <hgroup class="container headerImage">
+                <!-- #header start -->
+                <a style="text-decoration:none;" href="http://www.psfinc.com">
+                    <img style="top:0; text-align:center;" alt="Home" src="/wp-content/uploads/2023/01/healthcarereform-webheader.jpg" />
+                </a>
+            </hgroup>
+            <!--Navigation / navbar-->
+            <nav class = 'selection transition' id = 'selection'>
+                <?php
+                wp_nav_menu(
+                    array(
+                        'menu'           => 'Primary',
+                        'theme_location' => 'primary',
+                        'container'      => '',
+                        'add_li_class'   => 'select',
+                    )
+                );
+                ?>
+            </nav>
+        </header>
 
     </body>
 </html>
