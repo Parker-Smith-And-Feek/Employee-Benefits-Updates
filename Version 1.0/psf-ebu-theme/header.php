@@ -35,9 +35,23 @@
 
         </script>
         <?php wp_head() ?>
+        <meta content="width=device-width, initial-scale=1" name="viewport">
     </head>
     <!--Start of Body content-->
-    <body>
+    <body
+        <?php
+            $body_class = '';
+            if (is_single() && !is_attachment()) {
+                $current_category = get_the_category(get_the_ID());
+                $current_category = reset($current_category);
+
+                if ( 'articles' == $current_category->slug ) {
+                    $body_class = 'cat-articles';
+                }
+            }
+        body_class($body_class);
+        ?>
+        >
         <header id = "headerMain">
         <!--Header image and logo-->
             <hgroup class="container headerImage">
@@ -47,19 +61,21 @@
                 </a>
             </hgroup>
             <!--Navigation / navbar-->
-            <nav class = 'selection transition' id = 'selection'>
-                <?php
-                wp_nav_menu(
-                    array(
-                        'menu'           => 'Primary',
-                        'theme_location' => 'primary',
-                        'container'      => '',
-                        'add_li_class'   => 'select',
-                    )
-                );
-                ?>
-            </nav>
+            <i class="fa-solid fa-bars transition" id="ham"></i>
         </header>
+        <nav class = 'selection transition' id = 'selection'>
+            <a style="text-decoration:none;" class = 'psfincLink'href="http://www.psfinc.com"><img alt="Home" src="/wp-content/uploads/2023/01/PS&F Primary logo-IMA.jpg"/></a>
+            <?php
+            wp_nav_menu(
+                array(
+                    'menu'           => 'Primary',
+                    'theme_location' => 'primary',
+                    'container'      => '',
+                    'add_li_class'   => 'select',
+                )
+            );
+            ?>
+        </nav>
 
     </body>
 </html>

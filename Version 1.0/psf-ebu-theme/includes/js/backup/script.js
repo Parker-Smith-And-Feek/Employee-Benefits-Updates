@@ -212,7 +212,7 @@
           }
         }//end if webinar === 0
       }//end for loop
-      $(`<a id="visitWebinars" class = 'tealButton' href = '/webinars'>Complete list of upcoming webinars</a>`).appendTo("#upcoming");
+      $(`<a id="visitWebinars" href = '/webinars'>Complete list of upcoming webinars</a>`).appendTo("#upcoming");
     }
   
     function showPast(webinarArray){
