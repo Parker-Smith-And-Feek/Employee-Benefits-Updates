@@ -64,6 +64,7 @@ p, a, li{
 }
 .headerImage{
   width: 100%;
+  display:flex;
 }
 .headerNav{
   display: none;
@@ -91,15 +92,19 @@ p, a, li{
 
 .selection{
   padding: 0.85em 0;
-  background: #f0f1f3;
-  border-top: 1px solid #50b6e0;
-  border-bottom: 1px solid #50b6e0;
+  background: #124d61;
+  /* border-top: 1px solid #50b6e0;
+  border-bottom: 1px solid #50b6e0; */
   width: 100%;
 }
 
 .selection a{
   text-decoration: none;
   font-size: inherit;
+  color:white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
 }
 
 .selection ul{
@@ -129,14 +134,14 @@ p, a, li{
   top: 100%;
   display: block;
   background: inherit;
-  background: #f0f1f3;
+  background: #124d61;
   z-index: 10;
 }
 
 .selection li{
   position: relative;
   padding: 2px 0 2px 0;
-  font-size: 1em;
+  font-size: 0.85em;
   cursor: pointer;
   transition: all 0.3s;
   margin: 0 3%;
@@ -171,7 +176,7 @@ p, a, li{
   display:flex;
   flex-direction: column;
   align-items: center;
-  margin: 1% 0;
+  margin: 1% 0 1.5% 0;
 }
 
 .intro h1{
@@ -181,9 +186,19 @@ p, a, li{
 }
 
 .intro p{
-  width: 60%;
+  width: 45%;
   font-size: 1.25em;
   text-align: center;
+  line-height: 1.65em;
+  font-weight: 500;
+  color: #124d61;
+}
+
+.single_post .post p {
+  margin-bottom: 1.25em;
+}
+.single_post a {
+  font-size: inherit;
 }
 
 #footerMain{
@@ -197,9 +212,9 @@ p, a, li{
 .footerContainer{
   background: #50545d;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   color: white;
-  padding: 4% 7%;
+  padding: 4% 10%;
   width: 100%;
   margin-top: auto;
 }
@@ -214,18 +229,20 @@ p, a, li{
 }
 
 .footerContainer .logo{
-  width: 15%;
+  width: 18%;
+  justify-content: center;
 }
 .logo img{
   width: 100%;
 }
 .footerContainer .footerText{
-  width: 77%;
+  width: 65%;
+  justify-content: space-around;
 }
 .footerText p{
   color: white;
-  width: 78%;
-  margin: 0 0 2%;
+  width: 100%;
+  margin: 0;
 }
 .footerText a{
   color: #50b6e0;
@@ -259,9 +276,10 @@ table.rowShading td, table.rowShading th {
 }
 
 
+
 @media only screen and (min-width: 1366px) and (max-width: 1536px) {
   .footerContainer .logo{
-    width: 17%;
+    width: 20%;
   }
   .footerText{
     justify-content: space-between;
@@ -271,9 +289,7 @@ table.rowShading td, table.rowShading th {
   }
 }
 @media screen and (min-width: 1025px) and (max-width:1366px){
-  .selection li{
-    font-size: 1em;
-  }
+  
   .footerText{
     justify-content: space-between;
   }
@@ -416,8 +432,15 @@ table.rowShading td, table.rowShading th {
 
 /****Mobile****/
 @media screen and (max-width: 600px){
+
+  /****Font sizes / styles ****/
+  h2{
+    font-size: 1.25em
+  }
+
+  /****Navbar****/
   #ham{
-    font-size: 16px;
+    font-size: 1.25em;
   }
   .fa-x{
     left: 70%;
@@ -433,5 +456,19 @@ table.rowShading td, table.rowShading th {
 
   .psfincLink img{
     padding: 15% 20% 10% 20%;
+  }
+
+  /****Footer****/
+  .footerContainer{
+    flex-direction: column;
+    align-items: center;
+  }
+  .footerContainer .logo {
+    width: 45%;
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+  .footerContainer .footerText {
+    width: 100%;
   }
 }
