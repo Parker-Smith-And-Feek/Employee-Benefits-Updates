@@ -51,19 +51,15 @@
     $presentation = $data[acf][benefits_webinar_presentation];
     $recording = $data[acf][benefits_webinar_recording];
     $id = $data[id];
-    $host = $data[acf][host];
-    $registration = $data[acf][registration_link];
 
     $insert_webinars = $wpdb->insert(benefits_webinars, array(
-      'ID'                => $id,
-      'Date'              => $date,
-      'Title'             => $title,
-      'Content'           => $content,
-      'Handout'           => $handout,
-      'Presentation'      => $presentation,
-      'Recording'         => $recording,
-      'Host'              => $host,
-      'Registration_Link' => $registration
+      'ID'      => $id,
+      'Date'    => $date,
+      'Title'   => $title,
+      'Content' => $content,
+      'Handout'    => $handout,
+      'Presentation'    => $presentation,
+      'Recording'    => $recording,
     ));
 
   }
@@ -77,7 +73,6 @@
     $content = $data[post_content];
     $id = $data[ID];
     $host = $data[acf][host];
-    $registration = $data[acf][registration_link];
 
     // echo "<h2>In loop</h2>";
     // print_r($data);
@@ -95,7 +90,6 @@
       'Title'   => $title,
       'Content' => $content,
       'Host'    => $host,
-      'Registration_Link' => $registration
     ));
 
   }

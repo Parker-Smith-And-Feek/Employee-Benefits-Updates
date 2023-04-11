@@ -60,19 +60,23 @@
     console.log("pastWebinars: ", pastWebinars);
     console.log("benefitArticles: ", benefitAlerts);
     console.log("employeeBenefits: ", employeeBenefits);
+    console.log("hrinsights: ", hrInsights);
+    console.log("ebb: ", ebb);
   
     // showData(benefitsWebinars);
     showUpcoming(upcomingWebinars);
     showPast(pastWebinars);
     showArticles(benefitAlerts, 'baArticles');
     showArticles(employeeBenefits, 'ebArticles');
+    showQueryResults(hrInsights, 'hrInsights');
+    showQueryResults(ebb, 'ebb')
   
     function showArticles(apidata, containerID){
       for (let webinar in apidata){
         //Convert webinar date to javascript date
         id = "webinar" + webinar;
         let dateString = apidata[webinar].date;
-        let gmt = new Date(dateString);
+        let gmt = new Date(dateString.replace(/-/g, '\/'));
   
         //Get fields that will populate the html divs.
         title = apidata[webinar].title;
@@ -93,21 +97,26 @@
             $( `<div class = 'webinar post ${tags} index${webinar}' id = ${id}>
               <h3 class = 'webinarTitle'>${title}</h3>
               <p class = 'postDate'>${postDate}</p>
-              <p class = 'content'>${content}</p>
+              <div class = 'content'>${content}</div>
               <a class = 'excerpt' href = ${link}>View Article</a>
             </div>` ).appendTo( "#" + containerID + " #mostRecent"  );
   
             $( `<div class = 'webinar post ${tags} index${webinar}' id = ${id}>
-              <p class = 'postDate'>${postDate}</p>
               <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
               <a class = 'excerpt' href = ${link}>View Article</a>
             </div>` ).appendTo( ".overviewArticles ." + containerID, );
           } else{
             $( `<div class = 'webinar post ${tags} index${webinar}' id = ${id}>
-              <p class = 'postDate'>${postDate}</p>
               <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
               <a class = 'excerpt' href = ${link}>View Article</a>
             </div>` ).appendTo( ".overviewArticles ." + containerID, );
+            $( `<div class = 'webinar post ${tags}' id = ${id}>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <a class = 'excerpt' href = ${link}>View Article</a>
+            </div>` ).appendTo( "#" + containerID + " #remainder");
           }
   
         } else{
@@ -130,7 +139,7 @@
       for (let webinar in webinarArray){
         console.log("webinar: ", webinar);
         let dateString = webinarArray[webinar].Date;
-        let gmt = new Date(dateString);
+        let gmt = new Date(dateString.replace(/-/g, '\/'));
         title = webinarArray[webinar].Title;
         postDate = gmt.toLocaleDateString("en-US", {
           year:'numeric',
@@ -143,6 +152,7 @@
         recording = webinarArray[webinar].Recording;
         id = webinarArray[webinar].ID;
         let host = webinarArray[webinar].Host;
+        let registration = webinarArray[webinar].Registration_Link;
   
         if (webinarArray.length === 0){
           $(`<h3 class = 'webinarTitle'>There are currently no upcoming webinars scheduled. Check back for a list of Parker, Smith & Feek webinars.`).appendTo('#upcoming');
@@ -150,26 +160,61 @@
   
         if (webinar == 0){
           if (host === "Benefit Comply"){
-            $( `<div class = 'webinar post' id = '${id}'>
+            if (registration !== ''){
+              $( `<div class = 'webinar post' id = '${id}'>
               <h3 class = 'webinarTitle'>${title}</h3>
               <p class = 'postDate'>${postDate}</p>
-              <p class = 'content'>${content}</p>
+              <div class = 'content'>${content}</div>
               <p class = 'presenter'><i>Presented by ${host}. All Benefit Comply, LLC employee benefit webinars are held at 3 p.m. Eastern, 2 p.m. Central, Noon Pacific, and are 60 minutes</i></p>
-            </div>` ).appendTo( ".upcomingWebinars" );
-          } else{
-            $( `<div class = 'webinar post' id = '${id}'>
+              <a class = 'registration' href = '${registration}' target = "_blank">Register Here</a>
+              </div>` ).appendTo( ".upcomingWebinars" );
+            } else {
+              $( `<div class = 'webinar post' id = '${id}'>
               <h3 class = 'webinarTitle'>${title}</h3>
               <p class = 'postDate'>${postDate}</p>
-              <p class = 'content'>${content}</p>
+              <div class = 'content'>${content}</div>
+              <p class = 'presenter'><i>Presented by ${host}. All Benefit Comply, LLC employee benefit webinars are held at 3 p.m. Eastern, 2 p.m. Central, Noon Pacific, and are 60 minutes</i></p>
+              </div>` ).appendTo( ".upcomingWebinars" );
+            }
+            
+          } else{
+            if (registration !== ''){
+              $( `<div class = 'webinar post' id = '${id}'>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <div class = 'content'>${content}</div>
+              <p class = 'presenter'><i>Presented by ${host}</i></p>
+              <a class = 'registration'  href = '${registration}' target = "_blank">Register Here</a>
+              </div>` ).appendTo( ".upcomingWebinars" );
+            } else{
+              $( `<div class = 'webinar post' id = '${id}'>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <div class = 'content'>${content}</div>
               <p class = 'presenter'><i>Presented by ${host}</i></p>
             </div>` ).appendTo( ".upcomingWebinars" );
+            }            
           }
         } else if(webinar < 2){
           if (host === "Benefit Comply"){
+            if (registration !== ''){
+              $( `<div class = 'webinar post' id = '${id}'>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <div class = 'content'>${content}</div>
+              <p class = 'presenter'><i>Presented by ${host}. All Benefit Comply, LLC employee benefit webinars are held at 3 p.m. Eastern, 2 p.m. Central, Noon Pacific, and are 60 minutes</i></p>
+              <a class = 'registration'  href = '${registration}' target = "_blank">Register Here</a>
+            </div>` ).appendTo( ".webinarsContainer .upcomingWebinars" );
+  
             $( `<div class = 'webinar post' id = '${id}'>
               <h3 class = 'webinarTitle'>${title}</h3>
               <p class = 'postDate'>${postDate}</p>
-              <p class = 'content'>${content}</p>
+            </div>` ).appendTo( "#upcoming" );
+            } else {
+              $( `<div class = 'webinar post' id = '${id}'>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <div class = 'content'>${content}</div>
               <p class = 'presenter'><i>Presented by ${host}. All Benefit Comply, LLC employee benefit webinars are held at 3 p.m. Eastern, 2 p.m. Central, Noon Pacific, and are 60 minutes</i></p>
             </div>` ).appendTo( ".webinarsContainer .upcomingWebinars" );
   
@@ -177,13 +222,29 @@
               <h3 class = 'webinarTitle'>${title}</h3>
               <p class = 'postDate'>${postDate}</p>
             </div>` ).appendTo( "#upcoming" );
+            }
+            
   
   
           } else{
+            if (registration !== ''){
+              $( `<div class = 'webinar post' id = '${id}'>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <div class = 'content'>${content}</div>
+              <p class = 'presenter'><i>Presented by ${host}</i></p>
+              <a class = 'registration'  href = '${registration}' target = "_blank">Register Here</a>
+            </div>` ).appendTo( ".webinarsContainer .upcomingWebinars" );
+  
             $( `<div class = 'webinar post' id = '${id}'>
               <h3 class = 'webinarTitle'>${title}</h3>
               <p class = 'postDate'>${postDate}</p>
-              <p class = 'content'>${content}</p>
+            </div>` ).appendTo( "#upcoming" );              
+            } else {
+              $( `<div class = 'webinar post' id = '${id}'>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <div class = 'content'>${content}</div>
               <p class = 'presenter'><i>Presented by ${host}</i></p>
             </div>` ).appendTo( ".webinarsContainer .upcomingWebinars" );
   
@@ -191,35 +252,58 @@
               <h3 class = 'webinarTitle'>${title}</h3>
               <p class = 'postDate'>${postDate}</p>
             </div>` ).appendTo( "#upcoming" );
+            }
           }
         } else{
           if (host === "Benefit Comply"){
-            $( `<div class = 'webinar post' id = '${id}'>
+            if (registration !== ''){
+              $( `<div class = 'webinar post' id = '${id}'>
               <h3 class = 'webinarTitle'>${title}</h3>
               <p class = 'postDate'>${postDate}</p>
-              <p class = 'content'>${content}</p>
+              <div class = 'content'>${content}</div>
+              <p class = 'presenter'><i>Presented by ${host}. All Benefit Comply, LLC employee benefit webinars are held at 3 p.m. Eastern, 2 p.m. Central, Noon Pacific, and are 60 minutes</i></p>
+              <a class = 'registration'  href = '${registration}' target = "_blank">Register Here</a>
+            </div>` ).appendTo( ".webinarsContainer .upcomingWebinars" );
+            } else {
+              $( `<div class = 'webinar post' id = '${id}'>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <div class = 'content'>${content}</div>
               <p class = 'presenter'><i>Presented by ${host}. All Benefit Comply, LLC employee benefit webinars are held at 3 p.m. Eastern, 2 p.m. Central, Noon Pacific, and are 60 minutes</i></p>
             </div>` ).appendTo( ".webinarsContainer .upcomingWebinars" );
+            }
+            
   
   
           } else{
-            $( `<div class = 'webinar post' id = '${id}'>
+            if (registration !== ''){
+              $( `<div class = 'webinar post' id = '${id}'>
               <h3 class = 'webinarTitle'>${title}</h3>
               <p class = 'postDate'>${postDate}</p>
-              <p class = 'content'>${content}</p>
+              <div class = 'content'>${content}</div>
+              <p class = 'presenter'><i>Presented by ${host}</i></p>
+              <a class = 'registration'  href = '${registration}' target = "_blank">Register Here</a>
+            </div>` ).appendTo( ".webinarsContainer .upcomingWebinars" );
+            } else {
+              $( `<div class = 'webinar post' id = '${id}'>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <div class = 'content'>${content}</div>
               <p class = 'presenter'><i>Presented by ${host}</i></p>
             </div>` ).appendTo( ".webinarsContainer .upcomingWebinars" );
+            }
+            
           }
         }//end if webinar === 0
       }//end for loop
-      $(`<a id="visitWebinars" href = '/webinars'>Complete list of upcoming webinars</a>`).appendTo("#upcoming");
+      $(`<a id="visitWebinars" class = 'tealButton' href = '/webinars'>Complete list of upcoming webinars</a>`).appendTo("#upcoming");
     }
   
     function showPast(webinarArray){
   
       for (let webinar in webinarArray){
         let dateString = webinarArray[webinar].Date;
-        let gmt = new Date(dateString);
+        let gmt = new Date(dateString.replace(/-/g, '\/'));
         title = webinarArray[webinar].Title;
         postDate = gmt.toLocaleDateString("en-US", {
           year:'numeric',
@@ -268,6 +352,56 @@
       $(`<p class = 'webinarContact'>If you have questions about our webinars, please email us at <a href="mailto:info@psfinc.com?subject=Webinar Questions" aria-label="If you have any questions about webinars, please email Parker, Smith and Feek">info@psfinc.com</a></p>`).appendTo('#past');
   
     }
+
+    function showQueryResults(apidata, containerID){
+      for (let webinar in apidata){
+        //Convert webinar date to javascript date
+        id = "webinar" + webinar;
+        let dateString = apidata[webinar].post_date;
+        let gmt = new Date(dateString.replace(/-/g, '\/'));
+  
+        //Get fields that will populate the html divs.
+        title = apidata[webinar].post_title;
+        postDate = gmt.toLocaleDateString("en-US", {
+          year:'numeric',
+          month: 'long',
+          day: '2-digit',
+        });
+        id = apidata[webinar].ID;
+        link = apidata[webinar].article_url;
+        tags = apidata[webinar].tags;
+        let content = apidata[webinar].post_excerpt;
+        let count = webinar;
+  
+          console.log('webinar: ', webinar);
+          if (webinar === '0'){
+            $( `<div class = 'webinar post ${tags} index${webinar}' id = ${id}>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <div class = 'content'>${content}</div>
+              <a class = 'excerpt' href = ${link}>View Article</a>
+            </div>` ).appendTo( "#" + containerID + " #mostRecent"  );
+  
+          } else if (apidata[webinar].post_content !== ""){
+            $( `<div class = 'webinar post ${tags}' id = ${id}>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <div class = 'content'>${content}</div>
+              <a class = 'excerpt' href = ${link}>View Article</a>
+            </div>` ).appendTo( "#" + containerID + " #remainder");
+          } else{
+            $( `<div class = 'webinar post ${tags}' id = ${id}>
+              <h3 class = 'webinarTitle'>${title}</h3>
+              <p class = 'postDate'>${postDate}</p>
+              <a class = 'excerpt' href = ${link}>View Article</a>
+            </div>` ).appendTo( "#" + containerID + " #remainder");
+          }
+  
+  
+      }
+    }
+
+    
   
   
   

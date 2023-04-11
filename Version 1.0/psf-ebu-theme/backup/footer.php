@@ -1,8 +1,6 @@
 <div class = 'footerContainer'>
     <div class = 'logo footerDiv'>
-      <a href = "https://www.psfinc.com" target="_blank" aria-label="For mor information about Parker, Smith & Feek, please visit their website">
-        <img src ="/wp-content/uploads/2023/01/PS&F Primary logo-white-IMA.png" alt = 'Parker, Smith & Feek, an IMA Company'>
-      </a>
+      <img src ="/wp-content/uploads/2023/01/PS&F Primary logo-white-IMA.png" alt = 'Parker, Smith & Feek, an IMA Company'>
     </div>
     <div class = 'footerText footerDiv'>
       <p>

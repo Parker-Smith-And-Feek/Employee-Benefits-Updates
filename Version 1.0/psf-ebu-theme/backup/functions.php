@@ -39,7 +39,6 @@
     
 
     add_theme_support( 'menus' );
-    add_theme_support( 'post-thumbnails' );
     //Remove content adding paragraph tags automatically 
     // remove_filter ('the_content', 'wpautop');
     // remove_filter ('the_content', 'shortcode_unautop' );

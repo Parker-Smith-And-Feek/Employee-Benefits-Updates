@@ -17,9 +17,6 @@
     /* margin: 0.5em 0; */
     margin:0;
   }
-  .presenter, .overviewWebinars .postDate, .webinarsContainer .postDate, .category-5 .postDate, .remainder .postDate{
-    font-size: 0.7em;
-  }
 
   .blog_listing .post_info, .blog_listing h2 {
     margin-bottom: 1em;
@@ -33,7 +30,6 @@
 
   #visitWebinars{
     margin: 3em auto 1em auto;
-    font-size: 1em;
   }
   
   .tealButton, .mainContainer .tealButton{
@@ -55,18 +51,51 @@
   }
   .post .content{
     margin: 1em 0;
+    font-size: 1em;
+    line-height: 1.65em;
+    font-family : 'Roboto', sans-serif;
+    color: #666;
   }
   .post .presenter{
     margin-bottom: 1em;
     line-height: normal;
   }
+
+  .homeWebinar h2, .webinarsContainer h2, .mostRecent h2, .resourcesContainer h2{
+    font-size: 2em;
+    letter-spacing: 1px;
+    margin-top: 0;
+  }
+  .homeWebinar h3, .webinarsContainer .upcoming h3{
+    font-weight:bold;
+  }
+  .webinarsContainer .pastWebinars h2{
+    padding-bottom: 3%;
+  }
   
   .homeWebinar .upcoming {
     width: 45%;
-    background: #f7f7f7;
-    padding: 1% 2% 1% 5%;
+    background: white;
+    padding: 1% 3% 1% 5%;
     box-sizing: border-box;
+    border-right: 1px solid rgba(18,77,97,0.3);
   }
+
+  .homeWebinar h3, .homeWebinar p, .resourcesContainer p, .resourcesContainer a{
+    font-size: 1em;
+    line-height: 1.65em;
+  }
+  .homeWebinar a{
+    font-size: 1em;
+    line-height: 2em;
+  }
+  .homeWebinar .past .post a:first-of-type{
+    margin-top: 0.7em;
+  }
+  .homeWebinar .presenter, .homeWebinar .postDate, .homeWebinar .postDate, .ebbContainer .ebb .mostRecent .post .postDate, .ebbContainer .ebb .remainder .postDate, .baContainer .baArticles .mostRecent .postDate, .ebContainer .ebArticles .mostRecent .postDate, .hrInsights .mostRecent .post .postDate,.webinarsContainer .upcoming .post .postDate, .webinarsContainer .post .presenter{
+    font-size: 0.7em;
+  }
+
 
   .homeWebinar .post{
     margin-bottom: 1em;
@@ -74,12 +103,12 @@
   
   .homeWebinar .past {
     width: 54%;
-    background: #f0f1f3;
+    background: white;
     padding-left: 2%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    padding: 1% 0% 1% 1%;
+    padding: 1% 0% 1% 2.5%;
     position: relative;
   }
   .homeWebinar .past .post, .webinarContact{
@@ -96,11 +125,7 @@
     right: 0;
     bottom: 0;
     z-index: 5;
-    -webkit-mask-image: -webkit-gradient(linear, 70% top, 0 top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-  }
-  
-  .overviewWebinars h2{
-    margin-top: 0;
+    -webkit-mask-image: -webkit-gradient(linear, 70% top, 0 top, from(rgba(0,0,0,0.8)), to(rgba(0,0,0,0)));
   }
   
   .homeWebinar .psfLink{
@@ -120,32 +145,36 @@
   }
   
   .articlesImage{
-    /* width: 25%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column; */
-
     width: 20%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-left: auto;
     margin-right: 2em;
   }
+  .articleContainer{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+  }
   .buttonLinks{
     display: flex; 
     flex-direction: column; 
+    justify-content: center;
     align-items: center;
-    /* margin-top: auto;
-    margin-bottom: 2em; */
+    height:50%;
+    width: 75%;
   }
-  .buttonLinks a{
+  .overviewArticles .buttonLinks a{
     width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
   .articlesImage img{
-    width: 55%;
+    width: 60%;
   }
   .overviewArticles .articlesContainer{
     display: flex;
@@ -159,16 +188,35 @@
   .overviewArticles h2{
     width: 100%;
   }
-  .overviewArticles .post, .webinarsContainer .pastWebinars .post, .baContainer .post:not(.index0), .ebContainer .post:not(.index0), .category-4 .content_col .post{
-    width: 25%;
+
+  .overviewArticles .post{
+    width: 23%;
+    padding: 1% 2% 1% 2%;
+    position: relative;
+    aspect-ratio: 3/2;
+  }
+
+  .webinarsContainer .pastWebinars .post, .baContainer .post:not(.index0), .ebContainer .post:not(.index0), .hrContainer .post:not(.index0){
+    width: 20%;
     padding: 1% 2% 1% 2%;
     position: relative;
     /* margin-right: 14px; */
     aspect-ratio: 3/2;
+    margin-bottom: 1%;
   }
   
-  .overviewArticles a{
+  .overviewArticles a, .remainder a, .insights a{
     margin-top: auto;
+    margin-bottom: 5%;
+  }
+  .blog_listing a{
+    margin-top: auto;
+  }
+  .past .post a:first-of-type{
+    margin-top: auto;
+  }
+  .past .post a:last-of-type{
+    margin-bottom: 5%;
   }
   .overviewArticles h2 a{
     font-size: inherit;
@@ -178,7 +226,7 @@
     letter-spacing: 1px;
   }
   
-  .overviewArticles .post:after, .webinarsContainer .pastWebinars .post:after, .baContainer .post:not(.index0):after, .ebContainer .post:not(.index0):after, .category-4 .content_col .post:after{
+  .overviewArticles .post:after, .webinarsContainer .pastWebinars .post:after, .baContainer .post:not(.index0):after, .ebContainer .post:not(.index0):after, .hrContainer .post:not(.index0):after{
     content: '';
     position: absolute;
     bottom: 0;
@@ -188,7 +236,7 @@
     background: #da9e77;
   }
   
-  .overviewArticles .post:before, .webinarsContainer .pastWebinars .post:before, .baContainer .post:not(.index0):before, .ebContainer .post:not(.index0):before, .category-4 .content_col .post:before{
+  .overviewArticles .post:before, .webinarsContainer .pastWebinars .post:before, .baContainer .post:not(.index0):before, .ebContainer .post:not(.index0):before, .hrContainer .post:not(.index0):before{
       content: '';
       position: absolute;
       top: 0;
@@ -201,29 +249,31 @@
   .overviewArticles .post:last-child:before {
     opacity: 0;
   }
+
+
   /*---Webinars page---*/
-  .webinarsContainer .upcoming, .category-5 .content_col{
+  .webinarsContainer .upcoming{
     width: 100%;
     /* min-height: 350px; */
     background: #f0f1f3;
     display:flex;
     flex-wrap: wrap;
-    padding: 2% 10% 0 10%;
-  }
-  
-  .webinarsContainer .upcomingWebinars .post, .category-5 .post {
-    padding: 3% 3%;
-    box-sizing: border-box;
-    flex-basis: 50%;
-    position: relative;
-    min-height: 375px;
+    padding: 2% 9% 0 9%;
   }
 
   .archive .post{
     min-height: 0;
   }
   
-  .webinarsContainer .upcomingWebinars .post:nth-child(2n-2):after, .category-5 .content_col .post:nth-child(2n-1):after {
+  .webinarsContainer .upcomingWebinars .post, .ebbContainer .remainder .post {
+    padding: 3% 3%;
+    box-sizing: border-box;
+    flex-basis: 50%;
+    position: relative;
+    min-height: 300px;
+  }
+  
+  .webinarsContainer .upcomingWebinars .post:nth-child(2n-2):after, .ebbContainer .remainder .post:nth-child(2n-1):after {
     content: '';
     position: absolute;
     right: 0;
@@ -233,7 +283,7 @@
     background: white;
   }
   
-  .webinarsContainer .upcomingWebinars .post:before, .category-5 .post:before{
+  .webinarsContainer .upcomingWebinars .post:before, .ebbContainer .remainder .post:before{
     content: '';
     position: absolute;
     right: 12.5%;
@@ -243,27 +293,28 @@
     background: white;
   }
   
-  .webinarsContainer .past {
+  .webinarsContainer .past, .remainder, .insights {
     width: 100%;
     background: #fff7f2;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin: 2% auto;
+    margin: 0 auto;
     padding: 2% 10%;
   }
-  .webinarsContainer h2, .baContainer .articlesContainer h2, .ebContainer .articlesContainer h2 {
+  .webinarsContainer h2{
     width: 100%;
-    text-align: center;
+    text-align:center;
   }
-  
-  .webinarsContainer .past .post, .baContainer .articlesContainer .post, .ebContainer .articlesContainer .post, .category-4 .post {
-      margin-bottom: 1%;
-      width: 25%;
+  .baContainer .articlesContainer h2, .ebContainer .articlesContainer h2, .hrContainer .hrInsights h2, .ebbContainer .ebb h2 {
+    width: 70%;
+    margin-left: 11.5%;
+    text-align: left;
+    z-index: 3;
   }
-  
-  .webinarsContainer .pastWebinars div:nth-child(4n+1):before{
-    content: none;
+
+  .articlesContainer .mostRecent h3{
+    font-weight:bold;
   }
   
   
@@ -279,29 +330,54 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 0 2%;
+    padding: 2em 0 6em;
     background: #f7f7f7;
-    margin-bottom: 1%;
+    position: relative;
+    background-image: linear-gradient(to left, rgb(194 211 237 / 80%), rgb(247 247 247));
   }
-  .remainder, .insights {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    background: #fff7f2;
-    padding: 2%;
+
+  .baArticles .mostRecent{
+    /* background: #fff7f2; */
+    background-image: linear-gradient(to left, rgb(194 211 237 / 40%), #fff7f2);
+  }
+  .baArticles .remainder{
+    background:#fafafa66;
+  }
+
+  .webinarsContainer .upcomingWebinars p, .webinarsContainer .upcomingWebinars h3, .mostRecent p, .mostRecent h3, .mostRecent a, .ebbContainer .remainder h3, .ebbContainer .remainder p,.ebbContainer .remainder a, .upcomingWebinars .post li{
+    font-size: 1em;
+    line-height: 1.65em;
   }
   
   .articlesImageContainer{
-    width: 40%;
-    margin-bottom: 5%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .latestImage{
+    height: 100%;
+    /* -webkit-mask-image: -webkit-gradient(linear, 72% top, 100% top, from(rgba(0,0,0,0.7)), to(rgba(0,0,0,0))); */
+    -webkit-mask-image: -webkit-gradient(linear, 60% top, 5% top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    object-fit:contain;
   }
   
-  .baContainer .articlesContainer .index0, .ebContainer .articlesContainer .index0{
+  .baContainer .articlesContainer .index0, .ebContainer .articlesContainer .index0, .hrContainer .hrInsights .index0, .ebbContainer .ebb .index0{
     width: 40%;
-    margin-left: 5%;
-    margin-bottom: 5%;
+    margin-left: 11.5%;
+    margin-bottom: 0;
+    z-index: 3;
+    justify-content: flex-start;
+    height: 100%;
+  }
+
+  .ebbContainer .remainder{
+    padding: 2% 9%;
   }
   
   /*---Resources page---*/
@@ -310,11 +386,26 @@
     justify-content: space-between;
     padding: 2%;
   }
+
+  .resourcesContainer a{
+    text-decoration: none;
+    padding-bottom: 0.5em;
+    line-height: 1.5em;
+  }
   .resourceDiv{
     width: 32%;
     display: flex;
     flex-direction: column;
     padding: 1% 2%;
+    border: 1px solid #79838d;
+  }
+  .resourceDiv p{
+    display: flex; 
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+  .resourceDiv br{
+    display: none;
   }
   .helpfulLinks{
     background: #f7f7f7;
@@ -333,6 +424,7 @@
   }
   .single_post h1, .category h1{
     display: block;
+    letter-spacing: 1px;
   }
   .category h1{
     text-align: center;
@@ -343,17 +435,51 @@
     background: white;
     padding: 2em 4em;
   }
+
+  .page-template-policyTemplate h2{
+    letter-spacing: 1px;
+  }
+
+  /****Psuedo element changes****/
+  .webinarsContainer .pastWebinars div:nth-child(5n+1):before, .baContainer .articlesContainer .remainder div:nth-child(5n+5):before, .ebContainer .articlesContainer .remainder div:nth-child(5n+5):before, .hrContainer .hrInsights .remainder .post:nth-child(5n+5):before{
+    content: none;
+  }
+  
   
   
   
   
   @media only screen and (min-width: 1366px) and (max-width: 1536px) {
-    .selection ul, .intro p{
+
+    .intro p{
       width: 70%;
     }
+    .mostRecent{
+      padding: 2em 0 5em;
+    }
+
+    .latestImage{
+      -webkit-mask-image: -webkit-gradient(linear, 80% top, 15% top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    }
+    
 
     .single_post .the_content{
       width: 75%;
+    }
+
+
+
+    /****Pseudo Element Changes****/
+    .webinarsContainer .past .post, .baContainer .articlesContainer .remainder .post, .ebContainer .articlesContainer .remainder .post, .hrContainer .hrInsights .remainder .post {
+      width: 25%;
+    }
+
+    .webinarsContainer .pastWebinars div:nth-child(5n+1):before, .baContainer .articlesContainer .remainder div:nth-child(5n+5):before, .ebContainer .articlesContainer .remainder div:nth-child(5n+5):before, .hrContainer .hrInsights .remainder .post:nth-child(5n+5):before{
+      content: '';
+    }
+
+    .webinarsContainer .pastWebinars div:nth-child(4n+1):before, .baContainer .articlesContainer .remainder div:nth-child(4n+4):before, .ebContainer .articlesContainer .remainder div:nth-child(4n+4):before, .hrContainer .hrInsights .remainder .post:nth-child(4n+4):before{
+      content: none;
     }
   }
   
@@ -361,8 +487,18 @@
     .selection ul{
       width: 80%;
     }
+    
     .intro p{
-      width: 90%;
+      width: 80%;
+    }
+
+    .mostRecent{
+      padding: 2em 0 5em;
+    }
+    .latestImage{
+      max-width: 90%;
+      object-fit: cover;
+      -webkit-mask-image: -webkit-gradient(linear, 60% top, 0 top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
     }
   
     #past img{
@@ -371,12 +507,31 @@
       right: 0;
       bottom: 0;
       z-index: 5;
-      -webkit-mask-image: -webkit-gradient(linear, 85% top, 30% top, from(rgba(0,0,0,0.8)), to(rgba(0,0,0,0)));
+      -webkit-mask-image: -webkit-gradient(linear, 85% top, 30% top, from(rgba(0,0,0,0.5)), to(rgba(0,0,0,0)));
+    }
+
+    .buttonLinks{
+      width: 85%;
     }
 
     .single_post .the_content{
       width: 80%;
     }
+
+    /****Adjusting pseudo elements****/
+    .webinarsContainer .past .post, .baContainer .articlesContainer .remainder .post, .ebContainer .articlesContainer .remainder .post, .hrContainer .hrInsights .remainder .post {
+      width: 25%;
+    }
+
+    .webinarsContainer .pastWebinars div:nth-child(5n+1):before, .baContainer .articlesContainer .remainder div:nth-child(5n+5):before, .ebContainer .articlesContainer .remainder div:nth-child(5n+5):before, .hrContainer .hrInsights .remainder .post:nth-child(5n+5):before{
+      content: '';
+    }
+
+    .webinarsContainer .pastWebinars div:nth-child(4n+1):before, .baContainer .articlesContainer .remainder div:nth-child(4n+4):before, .ebContainer .articlesContainer .remainder div:nth-child(4n+4):before, .hrContainer .hrInsights .remainder .post:nth-child(4n+4):before{
+      content: none;
+    }
+
+
 
 
 
@@ -403,19 +558,35 @@
     .overviewArticles .articlesContainer{
       width: 79%;
     }
-  
-    .footerContainer .logo{
+    .webinarsContainer .past .post, .baContainer .articlesContainer .remainder .post, .ebContainer .articlesContainer .remainder .post, .hrContainer .post {
       width: 25%;
-      justify-content: center;
     }
+
+    .mostRecent{
+      padding: 2em 0 2em;
+      background-image: linear-gradient(to left, rgb(194 211 237 / 30%), rgb(247 247 247));
+    }
+
+    .articlesImageContainer{
+      right: 0;
+      left: initial; 
+      width: 40%;
+    }
+
+    .latestImage{
+      -webkit-mask-image: -webkit-gradient(linear, 100% top, 0 top, from(rgba(0,0,0,0.6)), to(rgba(0,0,0,0)));
+      object-fit: cover;
+      max-width: 100%;
+    }
+
+    .baContainer .articlesContainer .index0, .ebContainer .articlesContainer .index0 {
+      width: 60%;
+      margin-left: 20%;
+      margin-bottom: 0;
+      justify-content: flex-start;
+  }
   
-    .footerContainer .footerText{
-      width: 70%;
-      padding: 2% 0;
-    }
-    .footerText p{
-      width: 100%;
-    }
+    
 
     .single_post .the_content{
       width: 90%;
@@ -432,20 +603,17 @@
     }
   
     .post h3, .post p, .webinarContact, .post a, .postDate{
-      font-size: 0.7em;
-    }
-    .upcoming h3, .upcoming p, #visitWebinars, .homeWebinar .post h3, .homeWebinar .post p, .webinarContact, .baContainer .articlesContainer .index0 h3, .baContainer .articlesContainer .index0 p, .baContainer .articlesContainer .index0 .post a, .ebContainer .articlesContainer .index0 h3, .ebContainer .articlesContainer .index0 p, .ebContainer .articlesContainer .index0 .post a, .category-5 .content_col h2, .category-5 .content_col p, .category-5 .content_col a, .category-4 .content_col h2, .category-4 .content_col p, .category-4 .content_col a{
-      font-size: 0.9em;
-    }
-    /* .selection ul{
-      width: 95%;
-      padding: 0.5em 0;
-    }
-    .selection li{
-      padding: 2px 0 2px 0;
       font-size: 1em;
-      margin: 0 1em;
-    } */
+    }
+    .upcoming h3, .upcoming p, #visitWebinars, .homeWebinar .post h3, .homeWebinar .post p, .webinarContact, .baContainer .articlesContainer .index0 h3, .baContainer .articlesContainer .index0 p, .baContainer .articlesContainer .index0 .post a, .ebContainer .articlesContainer .index0 h3, .ebContainer .articlesContainer .index0 p, .ebContainer .articlesContainer .index0 .post a, .ebbContainer .content_col h2, .ebbContainer .content_col p, .ebbContainer .content_col a, .hrContainer .content_col h2, .hrContainer .content_col p, .hrContainer .content_col a{
+      font-size: 1em;
+    }
+
+    .homeWebinar .presenter, .homeWebinar p.postDate, .homeWebinar p.postDate, .ebbContainer .mostRecent .postDate, .remainder .postDate{
+      font-size: 0.8em;
+    }
+
+
     .overviewWebinars{
       flex-direction: column;
     }
@@ -456,57 +624,58 @@
       padding: 4% 5%;
       margin-top: 1%;
     }
+    .homeWebinar .upcoming{
+      border: none;
+    }
   
     #visitWebinars{
       grid-row-start: 5;
       grid-column-start: 1;
       grid-column-end: 3;
-      margin: 0 auto 2em;
+      margin: 4em auto 2em;
     }
   
     .overviewArticles{
       position:relative;
       padding-left: 5%;
       padding-right: 5%;
-      margin-bottom:0.83em
+      flex-direction: column;
     }
 
     .overviewArticles .post{
       width: 50%;
+      padding: 3% 3% 1% 3%;
+    }
+    .overviewArticles .post:before{
+      top: 5%;
+      height: 90%;
     }
     .overviewArticles .post:nth-child(3):before {
       opacity: 0;
     }
     .articlesImage {
-      /* width: 0%;
-      padding: 0; */
-      width: 35%;
-      justify-content: flex-start;
+      width: 100%;
+      justify-content: space-around;
+      flex-direction:row;
+      /* margin-bottom: 1em; */
+      padding: 1em 0;
+    }
+    .articleContainer{
+      height: auto;
+      width: 40%;
+      margin-top: 0;
     }
     .articlesImage img {
-      /* width: 25%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0.15; */
+      width: 60%;
     }
     .overviewArticles .articlesContainer {
       width: 100%;
     }
-    /* .overviewArtilces .post{
-      width: 33%;
-    } */
-  
-    /* .articlesImage{
-      width: 20%;
+    .buttonLinks{
+      width: 40%;
+      height: 100%;
     }
-    .articlesImage img{
-      width: 80%;
-    }
-    .articlesContainer{
-      width: 79%;
-      padding-right: 2%;
-    } */
+    
   
     /*Styles for 2 column grid layout*/
     .homeWebinar .upcoming{
@@ -530,6 +699,7 @@
     .webinarContact{
       margin-bottom: 0;
       margin-top: 5%;
+      width: 47%;
     }
     .homeWebinar .upcoming .post:first-of-type{
       grid-column-start: 1;
@@ -537,15 +707,33 @@
       grid-row-start: 2;
       grid-row-end: 5;
     }
-  
-    .webinarsContainer .upcoming, .webinarsContainer .past, .category-5 .content_col {
-      padding: 2% 5%;
+
+    .overviewArticles .homeArticles{
+      margin-bottom: 2em;
     }
-    .webinarsContainer .past .post, .baContainer .articlesContainer .post, .ebContainer .articlesContainer .post, .category-5 .content_col .post, .category-4 .content_col .post {
+
+    .webinarsContainer .upcoming{
+      padding: 2em 3%;
+    }
+
+    .webinarsContainer .past, .remainder, .insights{
+      padding: 2% 4% 4% 4%;
+    }
+
+    .webinarsContainer .upcomingWebinars .post{
+      flex-basis: 100%;
+      padding: 5% 3%;
+    }
+    .webinarsContainer .upcomingWebinars .post:nth-child(2n-2):after{
+      content: none;
+    }
+    .webinarsContainer .past .post, .baContainer .articlesContainer .remainder .post, .ebContainer .articlesContainer .remainder .post, .ebbContainer .remainder .post, .hrContainer .hrInsights .remainder .post {
       width: 33%;
+      padding: 2% 3%;
+      font-size: 0.9em;
     }
   
-    .webinarsContainer .pastWebinars .post:after, .baContainer .post:not(.index0):after, .ebContainer .post:not(.index0):after, .category-4 .content_col .post:after {
+    .webinarsContainer .pastWebinars .post:after, .baContainer .post:not(.index0):after, .ebContainer .post:not(.index0):after, .hrContainer .post:not(.index0):after {
       content: '';
       position: absolute;
       bottom: 0;
@@ -554,48 +742,52 @@
       height: 1px;
       background: #da9e77;
     }
-    .webinarsContainer .pastWebinars .post:before, .baContainer .post:before, .ebContainer .post:before,.baContainer .post:not(.index0):before, .ebContainer .post:not(.index0):before{
-      background:none;
-    }
-    .webinarsContainer .pastWebinars .post:nth-child(3n-1):before, .webinarsContainer .pastWebinars .post:nth-child(3n):before{
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 1px;
-      height: calc(100% - 14px);
-      background: #da9e77;
-    }
-    .baContainer .post:nth-child(3n-2):before, .ebContainer .post:nth-child(3n-2):before, .baContainer .post:nth-child(3n-1):before, .ebContainer .post:nth-child(3n-1):before{
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 1px;
-      height: calc(100% - 14px);
-      background: #da9e77;
-    }
+
+    
   
     .articlesImageContainer{
-      width: 25%;
+      width: 50%;
     }
-    
-    .baContainer .articlesContainer .index0, .ebContainer .articlesContainer .index0{
-      width: 65%;
+    .latestImage{
+      -webkit-mask-image: -webkit-gradient(linear, 100% top, 0 top, from(rgba(0,0,0,0.3)), to(rgba(0,0,0,0)));
+    }
+    .mostRecent{
+      padding-left: 6%;
+      padding-right: 6%;
+    }
+    .baContainer .articlesContainer .mostRecent .post, .ebContainer .articlesContainer .mostRecent .post, .hrContainer .hrInsights .mostRecent .post, .ebbContainer .ebb .mostRecent .post{
+      width: 100%;
+      margin-left: 0;
+      height: auto;
+    }
+
+    .mostRecent a{
+      margin-top: 1em;
     }
   
     .baArticles, .ebArticles{
       padding: 0;
     }
+    .baContainer .articlesContainer h2, .ebContainer .articlesContainer h2, .hrContainer .hrInsights h2, .ebbContainer .ebb h2{
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .ebbContainer .remainder{
+      padding: 2% 3%;
+    }
   
     .resourcesContainer{
       flex-direction:column;
       align-items: center;
+      padding: 0;
     }
   
     .resourceDiv{
-      margin-bottom: 2%;
-      width: 90%;
+      margin-bottom: 0;
+      width: 100%;
+      padding: 3% 5%;
+      border: none;
     }
   
     .resourceDiv p {
@@ -606,6 +798,21 @@
       margin-bottom: 2%;
     }
 
+    /****Pseudo element changes****/
+    .webinarsContainer .pastWebinars div:nth-child(5n+1):before, .baContainer .articlesContainer .remainder div:nth-child(5n+5):before, .ebContainer .articlesContainer .remainder div:nth-child(5n+5):before, .hrContainer .hrInsights .remainder .post:nth-child(5n+5):before{
+      content: '';
+    }
+
+    .webinarsContainer .pastWebinars div:nth-child(3n+1):before, .baContainer .articlesContainer .remainder div:nth-child(3n+3):before, .ebContainer .articlesContainer .remainder div:nth-child(3n+3):before, .hrContainer .hrInsights .remainder .post:nth-child(3n+3):before{
+      content: none;
+    }
+
+    .webinarsContainer .pastWebinars .post:before, .baContainer .post:not(.index0):before, .ebContainer .post:not(.index0):before, .hrContainer .post:not(.index0):before{
+      height: 90%;
+      top: 3%;
+    }
+    
+
     
   
   
@@ -614,26 +821,15 @@
   
   @media screen and (max-width: 600px){
   
-    /* h2{
-      text-align: center;
-    } */
-    
-    /* .selection ul {
-      width: 90%;
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .selection li {
-      font-size: 0.8em;
-      margin: 0 5%;
-    } */
-  
     .post h3, .post p, .webinarContact, .post a {
       font-size: 0.9em;
     }
+    .post .registration{
+      font-size: 1em;
+    }
     
     .intro p {
-      width: 90%;
+      width: 88%;
       font-size: 0.9em;
     }
     .overviewWebinars {
@@ -643,7 +839,7 @@
     .homeWebinar .upcoming{
       display: flex;
       flex-direction: column;
-      padding: 5% 5% 1% 5%;
+      padding: 5% 7% 1% 7%;
     }
     #visitWebinars {
       margin: 2em auto 2em;
@@ -651,80 +847,128 @@
     }
     .homeWebinar .pastWebinars {
       margin-top: 5%;
-      padding-top: 5%;
-      padding-bottom: 5%;
+      padding: 5% 7%;
+      /* padding-top: 5%;
+      padding-bottom: 5%; */
     }
     #past img {
-      -webkit-mask-image: -webkit-gradient(linear, 40% top, 15% top, from(rgba(0,0,0,0.8)), to(rgba(0,0,0,0)));
+      -webkit-mask-image: -webkit-gradient(linear, 40% top, 15% top, from(rgba(0,0,0,0.3)), to(rgba(0,0,0,0)));
       opacity: 0.5;
     }
     .homeWebinar .past .post, .webinarContact {
       margin-bottom: 1.5em;
       width: 100%;
     }
-    .overviewArticles .post, .webinarsContainer .pastWebinars .post, .baContainer .post:not(.index0), .ebContainer .post:not(.index0), .category-4 .content_col .post {
+
+    .overviewArticles{
+      padding-left: 7%;
+      padding-right: 7%;
+    }
+
+    .overviewArticles .post, .webinarsContainer .pastWebinars .post, .baContainer .articlesContainer .remainder .post, .ebContainer .articlesContainer .remainder .post, .hrContainer .hrInsights .remainder .post {
       width: 50%;
       font-size:0.8em;
+      padding: 4% 5%;
     }
     .overviewArticles .post:nth-child(2n-1):before {
       display: none;
     }
+
+    .articlesImage{
+      margin: 0 auto;
+      padding: 1em 0;
+    }
+    .articleContainer{
+      width: 30%;
+    }
+    .articleContainer img{
+      width: 100%;
+    }
+    .buttonLinks{
+      width: 55%;
+      height: 100%;
+      justify-content: space-around;
+      align-self:stretch;
+      margin: 0.5em 0;
+    }
+    .overviewArticles .buttonLinks a{
+      font-size: 0.65em; 
+      padding: 0.5em;
+    }
+
+
+
   
   
   
     /****Webinars Section****/
-    .webinarsContainer .upcomingWebinars .post, .category-5 .content_col .post{
+
+    .webinarsContainer .upcoming {
+      padding: 1.5em 7% 5% 7%;
+    }
+    .webinarsContainer .past, .remainder, .insights {
+      padding: 1.5em 4% 5% 4%;
+    }
+    .webinarsContainer .upcomingWebinars .post, .ebbContainer .remainder .post{
       flex-basis: 100%;
       min-height: 0;
-      padding: 5% 3%;
-      margin-bottom: 3%;
+      padding: 10% 2%;
     }
-    .webinarsContainer .upcomingWebinars .post:nth-child(2n-2):after, .category-5 .content_col .post:nth-child(2n-1):after{
+    .webinarsContainer .upcomingWebinars .post:first-of-type{
+      padding-top: 0;
+    }
+    .webinarsContainer .upcomingWebinars .post:nth-child(2n-2):after, .ebbContainer .remainder .post:nth-child(2n-1):after{
       display: none;
     }
-    .webinarsContainer .pastWebinars .post:nth-child(2n):before{
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 1px;
-      height: calc(100% - 14px);
-      background: #da9e77;
-    }
-    .webinarsContainer .pastWebinars .post:nth-child(2n-1):before{
-      display:none;
+    .past .post a{
+      line-height: 1.5;
     }
   
     /****Articles sections****/
-    .baContainer .post:nth-child(2n-1):before, .ebContainer .post:nth-child(2n-1):before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 1px;
-      height: calc(100% - 14px);
-      background: #da9e77;
+    
+    .mostRecent{
+      padding: 1.5em 9%;
+    }
+    .mostRecent a{
+      font-size: 0.75em;
+    }
+
+    /****EBB section****/
+    .ebbContainer .remainder{
+      padding: 2% 7%;
+    }
+
+    /****Resources and Links****/
+    .resourcesContainer{
+      padding: 0;
+    }
+
+    .resourceDiv{
+      width: 100%;
+      padding: 8% 7% 10% 7%;
+    }
+
+    .resourceDiv h2{
+      margin: 0 0 0.5em 0;
     }
 
     /****Single-post****/
+    .single_post{
+      padding: 0;
+    }
     .single_post .the_content{
-      padding: 2em 0;
+      padding: 2em 1em;
+      margin: 0 auto;
     }
   
-    .baContainer .post:nth-child(2n):before, .ebContainer .post:nth-child(2n):before, .baContainer .articlesContainer .index0:before, .ebContainer .articlesContainer .index0:before, .category-4 .content_col .post:nth-child(2n):before{
-      display: none;
+    /****Pseudo element changes****/
+    .webinarsContainer .pastWebinars div:nth-child(3n+1):before, .baContainer .articlesContainer .remainder div:nth-child(3n+3):before, .ebContainer .articlesContainer .remainder div:nth-child(3n+3):before, .hrContainer .hrInsights .remainder .post:nth-child(3n+3):before{
+      content: '';
     }
-    .footerContainer{
-      flex-direction: column;
-      align-items: center;
+
+    .webinarsContainer .pastWebinars div:nth-child(2n+1):before, .baContainer .articlesContainer .remainder div:nth-child(2n+2):before, .ebContainer .articlesContainer .remainder div:nth-child(2n+2):before, .hrContainer .hrInsights .remainder .post:nth-child(2n+2):before{
+      content: none;
     }
-    .footerContainer .logo {
-      width: 60%;
-      justify-content: center;
-      margin-bottom: 1em;
-    }
-    .footerContainer .footerText {
-      width: 100%;
-    }
+    
   }
   

@@ -23,22 +23,12 @@
 				<p class = 'postDate'><?php the_time(get_option('date_format')); ?></p>
 				<!--| posted by <?php the_author_posts_link(); ?>-->
 			</div>
-
-			<div class="the_content cf">
 				<?php
-// 					if ( has_post_thumbnail() ) {
-// 						the_post_thumbnail();
-// 					} else {
-// 						$img = preg_match('/<img.+src="(\S+)"/',get_the_content(),$match);
-// 						if(!empty($match[1])) {
-// 							echo '<img src="'.$match[1].'" />';
-// 						}
-// 					}
+				if (the_excerpt()){
 					the_excerpt ();
-
-					echo '<p><a href="'.get_the_permalink().'">View Article</a></p>';
+				}
+					echo '<a href="'.get_the_permalink().'">View Article</a>';
 				?>
-			</div>
 
 		</div>
 
