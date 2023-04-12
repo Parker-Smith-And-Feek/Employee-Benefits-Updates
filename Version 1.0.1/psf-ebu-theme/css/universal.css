@@ -40,6 +40,9 @@ p, a, li{
   font: 1em 'Roboto', sans-serif;
   line-height: 1.5em;
 }
+.post a{
+  font-size: 0.85em;
+}
 
 .post a, .page-template-policyTemplate .single_post a{
   color: #50b6e0;
@@ -62,6 +65,10 @@ p, a, li{
 .mainContainer a{
   color: #50b6e0;
   width: fit-content;
+}
+
+.webinarTitle strong{
+  font-weight: 400;
 }
 
 /*----------Universal Padding----------*/
