@@ -101,6 +101,10 @@ p, a, li{
   width: 100%;
 }
 
+.the_content li{
+  padding-bottom: 1em;
+}
+
 /****navbar****/
 
 
@@ -217,7 +221,7 @@ p, a, li{
 }
 
 .single_post .post p {
-  margin-bottom: 1.25em;
+  margin-bottom: 1.5em;
 }
 .single_post .post .post-date{
   font-size: 75%;
@@ -318,6 +322,39 @@ table.rowShading td, table.rowShading th {
   line-height: 1em;
   vertical-align: top;
   padding: 5px;
+}
+
+/* .plus-list li::marker{
+  font-family: FontAwesome;
+  content: "\2b";
+  font-size: 0.7em;
+}
+.plus-list li{
+  padding-left: 0.7em;
+} */
+
+.plus-list{
+  list-style-type:none; 
+  position: relative;
+}
+.plus-list li{
+  position: relative;
+}
+.plus-list li:before{
+  position:absolute; 
+  left: -1em;
+  content:"\2b"; 
+  font-size: inherit;
+  display: inline-block;
+  transform: translateY(-2%);
+}
+
+.two-column-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+.two-column-list li{
+  flex-basis: 50%;
 }
 
 
@@ -549,6 +586,14 @@ table.rowShading td, table.rowShading th {
   /****Font sizes / styles ****/
   h2{
     font-size: 1.25em
+  }
+
+  /****List styles****/
+  ul{
+    padding-left: 1em;
+  }
+  li{
+    font-size:0.9em;
   }
 
   /****Navbar****/
