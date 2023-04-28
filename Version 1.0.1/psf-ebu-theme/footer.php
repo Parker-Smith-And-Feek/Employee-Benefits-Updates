@@ -1,0 +1,21 @@
+<div class = 'footerContainer'>
+    <div class = 'logo footerDiv'>
+      <a href = "https://www.psfinc.com" target="_blank" aria-label="For mor information about Parker, Smith & Feek, please visit their website">
+        <img src ="/wp-content/uploads/2023/01/PS&F Primary logo-white-IMA.webp" alt = 'Parker, Smith & Feek, an IMA Company'>
+      </a>
+    </div>
+    <div class = 'footerText footerDiv'>
+      <p>
+          Parker, Smith & Feek is and independent, employee owned, full service insurance broker offering employee benefits, commercial and personal insurance, and surety solutions. Our Employee Benefits Department has been helping clients create and administer valuable benefits programs since 1975.
+      </p>
+      <p>
+        Visit Parker, Smith & Feek's <a href ="https://www.psfinc.com" target ='_blank' aria-label = "For more information, visit Parker, Smith & Feek's home website">website</a> to learn more about our services.
+      </p>
+      <p class = 'disclaimers'>
+        <a href = "/privacy-policy/">PRIVACY POLICY</a>
+        <a href = "/disclaimer">DISCLAIMER</a>
+      </p>
+    </div>
+
+
+  </div>
