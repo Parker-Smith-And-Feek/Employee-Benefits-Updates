@@ -26,6 +26,7 @@
         <?php
         //Get values from respective DB-tables. Will use this data to populate fields via JS/jQuery, to have more flexibility with future vs past posts
             global $wpdb;
+            global $webinars_test_data;
 
             $web_sql = $wpdb->prepare("SELECT *
                 FROM benefits_webinars
