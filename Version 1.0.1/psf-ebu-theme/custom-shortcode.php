@@ -1,5 +1,25 @@
 <?php
 
+/**************************Download Image for HR Insight SHORTCODE**************************/
+add_shortcode('hr_image', 'show_hr_image');
+
+function show_hr_image(){
+    $output = '';
+    // Get the urls from the WP Custom Fields established within wp-admin
+    $hr_image = implode('',get_post_custom_values('hr_image', get_the_ID()));
+    $pdf_link = implode('',get_post_custom_values('IMA Link', get_the_ID()));
+
+    //Use default image if the custom field doesn't have a value
+    if ($hr_image ==='' || $hr_image === null){$hr_image = '/wp-content/uploads/2023/08/pdf-download.jpg';}
+
+    $output = "<a style = 'display:block; text-align: center;' href ='{$hr_image}' aria-label = 'Follow this link to read or download the PDF version'><img alt='' class = 'hr-image' style = 'padding-bottom: 16px;' src = '{$hr_image}'></a>
+    <p style='font-size:75%;text-align:center;padding-bottom:3em;'>To learn more, read the most recent <a href='{$pdf_link}'>HR Insight</a></p>";
+
+    return $output;
+
+}
+
+
 /**************************HR INSIGHTS SHORTCODE**************************/
 
     //Show the latest hr insight in the top section
@@ -24,10 +44,10 @@
         $index = $latest_hrinsight_query->current_post;
         $id = get_the_ID();
         $key_value = get_post_custom_values($key = "IMA Link");
-        $link = $key_value[0];
+        $link = get_the_permalink();
         $title = get_the_title();
         $date = get_the_date();
-        $content = get_the_excerpt();
+        $content = get_the_content();
         ?>
 
         <?php 
@@ -70,10 +90,10 @@
         $index = $remainder_hrinsight_query->current_post;
         $id = get_the_ID();
         $key_value = get_post_custom_values($key = "IMA Link");
-        $link = $key_value[0];
+        $link = get_the_permalink();
         $title = get_the_title();
         $date = get_the_date();
-        $content = get_the_excerpt();
+        $content = get_the_content();
         ?>
 
         <?php 
@@ -487,14 +507,26 @@
         ORDER BY Date DESC", array("ID", 'Title', 'Date', 'Content', 'Handout', 'Presentation', 'Recording', 'Host')
         );
         $webinar_query_data = $wpdb->get_results($webinar_sql);
+        $upcoming_posts = array();
 
-        $id = $webinar_query_data[0] -> ID;
-        $title = $webinar_query_data[0] -> Title;
-        $postDate = $webinar_query_data[0] -> Date; 
+        foreach($webinar_query_data as $row){
+            $postDate = $row -> Date;
+            if (strtotime($postDate) > $today){
+                array_unshift($upcoming_posts, $row);
+            } else{
+                break;
+            }
+        }
+
+        $id = $upcoming_posts[0] -> ID;
+        $title = $upcoming_posts[0] -> Title;
+        $postDate = $upcoming_posts[0] -> Date; 
         $date = date('F d, Y', strtotime($postDate));
-        $content = $webinar_query_data[0] -> Content;
-        $registration = $webinar_query_data[0] -> Registration_Link;
-        $host = $webinar_query_data[0] -> Host;
+        $content = $upcoming_posts[0] -> Content;
+        $registration = $upcoming_posts[0] -> Registration_Link;
+        $host = $upcoming_posts[0] -> Host;
+
+        
         
         $output = "<div class = 'webinar post index{$index}' id = 'post-{$id}'>
                     <h3 class = 'webinarTitle'>$title</h3>
