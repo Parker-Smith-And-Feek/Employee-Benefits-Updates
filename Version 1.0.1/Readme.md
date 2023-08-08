@@ -15,4 +15,12 @@
    - The home page uses separate shortcodes built specifically for the home page
    - End goal will be to reduce the amount of database calls these shortcodes are performing, especially for the home page, but for now we will go with this  
 - Removing Rending content from script.js
-- 
+
+##Custom-shortcode.php
+- Added shortcode to display download image and link to PS&F branded PDF, hosted on on IMA
+- Reverted back to using excerpt() instead of content()
+  - This is because we're adding the shortcode for the download image in the content. If we used the content for the archive the [hr_image] shortcode renders on page
+
+##Single.php
+- Displays the content instead of excerpt
+- Had a section that rendered differently based on what category it was, but this has been removed to make that section more accessible. Using a shortcode instead.
