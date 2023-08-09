@@ -47,7 +47,7 @@ function show_hr_image(){
         $link = get_the_permalink();
         $title = get_the_title();
         $date = get_the_date();
-        $content = get_the_content();
+        $content = get_the_excerpt();
         ?>
 
         <?php 
@@ -93,7 +93,7 @@ function show_hr_image(){
         $link = get_the_permalink();
         $title = get_the_title();
         $date = get_the_date();
-        $content = get_the_content();
+        $content = get_the_excerpt();
         ?>
 
         <?php 
@@ -441,7 +441,7 @@ function show_hr_image(){
         return $output; 
     }
 
-    add_shortcode( 'remainder_webinars', 'show_remainder_webinars');
+    add_shortcode( 'remainder_webinars', 'show_latest_webinars');
 
     function show_remainder_webinars(){
         global $wpdb;
@@ -694,6 +694,134 @@ function show_hr_image(){
         wp_reset_postdata();
         return $output; 
     }
+
+    /*****************PSFINC Webinars Test *****************/
+
+    add_shortcode( 'psfinc_webinars', 'show_psfinc_webinars');
+
+    function show_psfinc_webinars(){
+        global $wpdb;
+        $output = '';
+        $index = 0;  
+        $upcoming_count = 0;
+        $past_count = 0;     
+
+        $today = strtotime(date('Y-m-d'));
+
+        $webinar_sql = $wpdb->prepare("SELECT *
+        FROM benefits_webinars
+        ORDER BY Date DESC", array("ID", 'Title', 'Date', 'Content', 'Handout', 'Presentation', 'Recording', 'Host')
+        );
+        $webinar_query_data = $wpdb->get_results($webinar_sql);
+
+        $pre_upcoming = array();
+        $pre_past = array();
+        $upcoming_webinars = array();
+        $past_webinars = array();
+
+        foreach ($webinar_query_data as $row){
+            $id = $row-> ID;
+            $title = $row -> Title;
+            $postDate = $row -> Date;   
+            $date = date('F d, Y', strtotime($postDate));
+            $content = $row -> Content;
+            $registration = $row -> Registration_Link;
+            $recording = $row -> Recording;
+            $host = $row -> Host;   
+
+            if (strtotime($postDate) < $today){
+                $past_webinars[$past_count] = array(
+                    "ID" => $id,
+                    "Title" => $title,
+                    "Date" => $postDate,
+                    "Content" => $content,
+                    "Registration" => $registration,
+                    "Recording" => $recording,
+                    "Host" => $host
+                );
+                ++$past_count;
+            } else{
+                $upcoming_webinars[$upcoming_count] = array(
+                    "ID" => $id,
+                    "Title" => $title,
+                    "Date" => $postDate,
+                    "Content" => $content,
+                    "Registration" => $registration,
+                    "Host" => $host
+                );
+                ++$upcoming_count;
+            }
+
+        }
+
+        
+
+        $output .= "<h2 class = 'title'>Upcoming Webinars</h2>";
+        foreach ($upcoming_webinars as $post){
+
+            $id = $post[ID];
+            $title = $post[Title];
+            $postDate = $post[Date];   
+            $date = date('F d, Y', strtotime($postDate));
+            $content = $post[Content];
+            $handout = $post -> Handout;
+            $presentation = $post -> Presentation;
+            $recording = $post -> Recording;
+            $registration = $post -> Registration_Link;
+            $host = $post[Host];
+
+            $output .= "
+                        <div class = 'upcomingPosts'>
+                            <div class = 'benefits-webinars webinar post' id ='{$id}' style = 'border-bottom: 1px solid #f37121'>
+                                <h2>{$title}</h2>
+                                <h3 class = 'webinarSub webinarHost mainContent'>Date</h3>
+                                <p>{$date}</p>
+                                <h3 class = 'webinarSub webinarHost mainContent'>Presented By</h3>
+                                <p>{$host}</p>
+                                <div class = 'content'>
+                                    <h3 class = 'webinarSub webinarHost mainContent'>Webinar Description</h3>
+                                    <p>{$content}</p>
+                                </div>
+                            </div>
+                        </div>
+                        ";
+        }
+
+        $output .= "<h2>Previous Webinars Include:";
+        $output .= "";     
+        
+        foreach ($past_webinars as $post){
+            $id = $post[ID];
+            $title = $post[Title];
+            $postDate = $post[Date];   
+            $date = date('F d, Y', strtotime($postDate));
+            $content = $post[Content];
+            $handout = $post -> Handout;
+            $presentation = $post -> Presentation;
+            $recording = $post[Recording];
+            $registration = $post -> Registration_Link;
+            $host = $post[Host];
+
+            $output .= "
+                        <div class = 'upcomingPosts'>
+                            <div class = 'benefits-webinars webinar post' id ='{$id}'>
+                                <p><strong>{$title}</strong> - {$date}<br><a href = '$recording' target ='_blank' aria-label='{$title} online recording'>Watch Online</a></p>
+                            </div>
+                        </div>
+                        ";
+        }
+
+        echo "<script>console.log('Full data:" . $webinar_query_data . "');</script>";
+        echo "<script>console.log('Upcoming Webinars:" . $upcoming_webinars . "');</script>";
+        echo "<script>console.log('Past Webinars:" . $past_webinars . "');</script>";
+
+        wp_reset_postdata();
+        return $output;
+
+
+    }
+
+    
 
 
 
