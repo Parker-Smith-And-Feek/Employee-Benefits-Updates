@@ -12,7 +12,7 @@ function show_hr_image(){
     //Use default image if the custom field doesn't have a value
     if ($hr_image ==='' || $hr_image === null){$hr_image = '/wp-content/uploads/2023/08/pdf-download.jpg';}
 
-    $output = "<a style = 'display:block; text-align: center;' href ='{$hr_image}' aria-label = 'Follow this link to read or download the PDF version'><img alt='' class = 'hr-image' style = 'padding-bottom: 16px;' src = '{$hr_image}'></a>
+    $output = "<a style = 'display:block; text-align: center;' href ='{$pdf_link}' aria-label = 'Follow this link to read or download the PDF version'><img alt='' class = 'hr-image' style = 'padding-bottom: 16px;' src = '{$hr_image}'></a>
     <p style='font-size:75%;text-align:center;padding-bottom:3em;'>To learn more, read the most recent <a href='{$pdf_link}'>HR Insight</a></p>";
 
     return $output;
@@ -410,12 +410,18 @@ function show_hr_image(){
             $recording = $row -> Recording;
             $registration = $row -> Registration_Link;
             $host = $row -> Host;
+            $time = $row -> Webinar_Time;
+            if ($time != ''){
+                $webinar_time = '| ' . $time;
+            } else{
+                $webinar_time = '';
+            }
 
             if (strtotime($postDate) >= $today){
                 $preput = 
                     "<div class = 'webinar post index{$index}' id = 'post-{$id}'>
                         <h3 class = 'webinarTitle'>$title</h3>
-                        <p class = 'postDate'>$date</p>
+                        <p class = 'postDate'>$date $webinar_time</p>
                         <div class = 'content'>$content</div>";
                 if ($host === 'Benefit Comply'){
                     $preput .= "<p class = 'presenter'><i>Presented by ${host}. All Benefit Comply, LLC employee benefit webinars are held at 3 p.m. Eastern, 2 p.m. Central, Noon Pacific, and are 60 minutes</i></p>";
@@ -441,7 +447,7 @@ function show_hr_image(){
         return $output; 
     }
 
-    add_shortcode( 'remainder_webinars', 'show_latest_webinars');
+    add_shortcode( 'remainder_webinars', 'show_remainder_webinars');
 
     function show_remainder_webinars(){
         global $wpdb;
@@ -706,19 +712,21 @@ function show_hr_image(){
         $upcoming_count = 0;
         $past_count = 0;     
 
+        /****Will use this timestamp as a comparison in dividing posts: Upcoming posts vs past posts ****/
         $today = strtotime(date('Y-m-d'));
 
+        /****Prepare the query to the database for the webinar posts ****/
         $webinar_sql = $wpdb->prepare("SELECT *
         FROM benefits_webinars
         ORDER BY Date DESC", array("ID", 'Title', 'Date', 'Content', 'Handout', 'Presentation', 'Recording', 'Host')
         );
         $webinar_query_data = $wpdb->get_results($webinar_sql);
 
-        $pre_upcoming = array();
-        $pre_past = array();
+        /****Establish the 2 different arrays: Upcoming webinars & Past Webinars ****/
         $upcoming_webinars = array();
         $past_webinars = array();
 
+        /****Loop through Query data and separate posts as Upcoming vs Past ****/
         foreach ($webinar_query_data as $row){
             $id = $row-> ID;
             $title = $row -> Title;
@@ -756,7 +764,10 @@ function show_hr_image(){
 
         
 
+        /****Render the header on the page ****/
         $output .= "<h2 class = 'title'>Upcoming Webinars</h2>";
+
+        /****Loop through the upcoming webinars array and create the content that will be rendered on the page ****/
         foreach ($upcoming_webinars as $post){
 
             $id = $post[ID];
@@ -787,9 +798,11 @@ function show_hr_image(){
                         ";
         }
 
+        /****Render the header on the page ****/
         $output .= "<h2>Previous Webinars Include:";
         $output .= "";     
-        
+
+        /****Loop through the past webinars array and create the content that will be rendered on the page ****/        
         foreach ($past_webinars as $post){
             $id = $post[ID];
             $title = $post[Title];
@@ -810,10 +823,6 @@ function show_hr_image(){
                         </div>
                         ";
         }
-
-        echo "<script>console.log('Full data:" . $webinar_query_data . "');</script>";
-        echo "<script>console.log('Upcoming Webinars:" . $upcoming_webinars . "');</script>";
-        echo "<script>console.log('Past Webinars:" . $past_webinars . "');</script>";
 
         wp_reset_postdata();
         return $output;
